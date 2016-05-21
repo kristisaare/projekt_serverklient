@@ -17,13 +17,21 @@ echo "Alginv kasv $initialInvestmentGrowth ja lisatud raha kasv $monthlyInvestme
 $finalInvestment = round(($initialInvestmentGrowth+$monthlyInvestmentGrowth), 2);
 echo "Lõplik investeeringu suurus pärast $lengthYear aastat on $finalInvestment";
 
-$array[] = $lengthMonth;
+$arrayTotalInvestments[] = $lengthMonth;
 for ($i=0; $i < $lengthMonth; $i++) {
-  $currentInvestment = ($initialInvestment*pow((1+$interestMonthly/100), $i))+$monthlyInvestment*((pow((1+$interestMonthly/100), $i)-1)/($interestMonthly/100));
-  $array[$i] = $currentInvestment;
+  $currentInvestment = round(($initialInvestment*pow((1+$interestMonthly/100), $i))+$monthlyInvestment*((pow((1+$interestMonthly/100), $i)-1)/($interestMonthly/100)), 2);
+  $arrayTotalInvestments[$i] = $currentInvestment;
 }
 
-print_r($array);
+$arrayTotalPrincipal[] = $lengthMonth;
+for ($j=0; $j < $lengthMonth ; $j++) {
+  $currentPrincipal = ($initialInvestment+($monthlyInvestment*$j));
+  $arrayTotalPrincipal[$j] = $currentPrincipal;
+}
+
+
+print_r($arrayTotalInvestments);
+print_r($arrayTotalPrincipal);
 
 
  ?>
