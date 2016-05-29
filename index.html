@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<head>
+      <meta charset="utf-8"/>
+      <title> Arvuta portfelli tulevikuväärtus </title>
+      <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+      <script src="js/app.js"></script>
+</head>
+<body>
+
+  <form action="calculations_test.php" method="post" id="calculations-form">
+
+  <label>Praegu investeeritud summa</label>
+  <br>
+  <input type="text" placeholder="Portfelli väärtus" name="initialInvestment">
+  <br>
+  <label>Igakuiselt lisatav rahasumma</label>
+  <br>
+  <input type="text" placeholder="Igakuiselt lisatav rahasumma" name="monthlyInvestment">
+  <br>
+  <label>Mitmeks aastaks soovid raha investeerida?<label>
+  <br>
+  <input type="text" placeholder="Investeeringu pikkus aastates" name="lengthYear">
+  <br>
+  <label>Aastane keskmine tootlus protsentides</label>
+  <br>
+  <input type="text" placeholder="Tootlus %" name="interestAnnual">
+
+
+  <br>
+  <button type="submit">Arvuta!</button>
+
+  </form>
+
+
+
+
+</body>
+</html>
