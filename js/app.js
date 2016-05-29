@@ -50,7 +50,7 @@ $(document).ready(function(){
             }
         },
         series: [{
-          name: 'Inveesteeringu intressikasv',
+          name: 'Investeeringu intressikasv',
           data: parsedData.totalInterest
         }, {
             name: 'Ise investeeritud raha',
