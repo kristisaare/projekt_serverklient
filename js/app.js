@@ -8,6 +8,7 @@ $(document).ready(function(){
       var parsedData = $.parseJSON(data);
       console.log(parsedData.totalInvestments);
       drawChart(parsedData);
+      drawTable(parsedData);
     });
   });
   function drawChart(parsedData){
@@ -22,13 +23,8 @@ $(document).ready(function(){
             tickmarkPlacement: 'on',
             ceiling: parsedData.lengthYear,
             title: {
-                text: 'Investeeritud aastad'
+                text: 'Investeeritud kuud'
             },
-            // labels: {
-              // formatter: function(){
-                // return Math.round(this.value/12;
-              // }
-            // }
         },
         yAxis: {
             title: {
@@ -50,13 +46,52 @@ $(document).ready(function(){
             }
         },
         series: [{
-          name: 'Investeeringu intressikasv',
+          name: 'Inveesteeringu intressikasv',
           data: parsedData.totalInterest
         }, {
             name: 'Ise investeeritud raha',
             data: parsedData.totalPrincipal
         }]
     });
+  };
+  function drawTable(parsedData){
+    var tableBox = $('#table-container');
+    var tableRows = [];
+    for (var i = 0; i < parsedData.monthlyInterest.length; i++) {
+      var month = (i+1);
+      var principal = parsedData.currentInvestmentValue[i];
+      var interest = parsedData.monthlyInterest[i];
+      var row = [
+        "<tr>",
+          "<td>",
+            month,
+          "</td>",
+          "<td>",
+            principal,
+          "</td>",
+          "<td>",
+            interest,
+          "</td>",
+        "</tr>"
+      ];
+      tableRows.push(row.join(""))
+    }
+    var table = [
+      "<table>",
+        "<thead>",
+          "<tr>",
+            "<th> month</th>",
+            "<th> principal</th>",
+            "<th> interest</th>",
+          "</tr>",
+        "</thead>",
+        "<tbody>",
+          tableRows.join(""),
+        "</tbody>",
+      "</table>"
+    ];
+    tableBox.html(table.join(""))
+
   };
 
 

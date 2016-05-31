@@ -35,10 +35,34 @@ for ($k=0; $k < $lengthMonth ; $k++) {
   $arrayTotalInterest[$k] = $currentInterest;
 }
 
+$arrayInterestEarnedPerMonth = array();
+for ($l=0; $l < $lengthMonth; $l++) {
+  if ($l==0) {
+    $previousMonthInterest = 0;
+  } else {
+    $previousMonthInterest = $arrayTotalInterest[($l-1)];
+  }
+  $currentMonthInterest = ($arrayTotalInterest[$l]-$previousMonthInterest);
+  $arrayInterestEarnedPerMonth[$l]= $currentMonthInterest;
+}
+
+$arrayCurrentInvestmentValue = array();
+for ($n=0; $n < $lengthMonth ; $n++) {
+  if ($n==0) {
+    $previousMonthInterest = 0;
+  } else {
+    $previousMonthInterest = $arrayTotalInvestments[($n-1)];
+  }
+  $currentInvestmentValue = ($arrayTotalInvestments[$n]-$previousMonthInterest[$n]);
+  $arrayCurrentInvestmentValue[$n] = $currentInvestmentValue;
+}
+
 $result = array(
   "totalInvestments" => $arrayTotalInvestments,
   "totalPrincipal" => $arrayTotalPrincipal,
   "totalInterest" => $arrayTotalInterest,
+  "monthlyInterest" => $arrayInterestEarnedPerMonth,
+  "currentInvestmentValue" => $arrayCurrentInvestmentValue,
   "lengthYear" => range(1, $lengthYear),
 );
 
