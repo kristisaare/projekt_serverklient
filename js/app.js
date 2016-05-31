@@ -1,8 +1,12 @@
 $(document).ready(function(){
   var form = $('#calculations-form');
   form.on( "submit", function(event) {
-    console.log( "<p> was clicked" );
+    //console.log( "<p> was clicked" );
     event.preventDefault();
+
+//Siia tuleb validation
+
+
     $.post("calculations_test.php", form.serialize())
     .done(function(data){
       var parsedData = $.parseJSON(data);
@@ -58,19 +62,27 @@ $(document).ready(function(){
     var tableBox = $('#table-container');
     var tableRows = [];
     for (var i = 0; i < parsedData.monthlyInterest.length; i++) {
-      var month = (i+1);
-      var principal = parsedData.currentInvestmentValue[i];
-      var interest = parsedData.monthlyInterest[i];
+      var month = (i);
+      var investedMoney = Math.round(parsedData.totalPrincipal[i]*100)/100;
+      var principal = Math.round(parsedData.currentInvestmentValue[i]*100)/100;
+      var interest = Math.round(parsedData.monthlyInterest[i]*100)/100;
+      var totalInterest = Math.round(parsedData.totalInterest[i]*100)/100;
       var row = [
         "<tr>",
           "<td>",
             month,
           "</td>",
           "<td>",
+            investedMoney,
+          "</td>",
+          "<td>",
             principal,
           "</td>",
           "<td>",
             interest,
+          "</td>",
+          "<td>",
+            totalInterest,
           "</td>",
         "</tr>"
       ];
@@ -80,9 +92,11 @@ $(document).ready(function(){
       "<table>",
         "<thead>",
           "<tr>",
-            "<th> month</th>",
-            "<th> principal</th>",
-            "<th> interest</th>",
+            "<th> Kuu</th>",
+            "<th> Oma investeering</th>",
+            "<th> Portfelli väärtus</th>",
+            "<th> Intressitulu</th>",
+            "<th> Kokku intressitulu</th>",
           "</tr>",
         "</thead>",
         "<tbody>",
