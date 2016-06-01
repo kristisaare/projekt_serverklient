@@ -4,16 +4,63 @@ $(document).ready(function(){
     //console.log( "<p> was clicked" );
     event.preventDefault();
 
-//Siia tuleb validation
+    var formvalid = true;
+    var errorbox = $('#errors');
+    // http://stackoverflow.com/questions/16242449/regex-currency-validation
+    var currencyRegex = new RegExp("^([1-9]([0-9]*)|0)([\.,][0-9]{1,2})?$");
+
+    errorbox.html("");
+
+    var initialInvestment = $('#initial-investment');
+    if (initialInvestment.val().length==0) {
+        formvalid = false;
+        errorbox.append("<div>Sisesta palun algselt investeeritud summa.</div>");
+    }
+    else if(!currencyRegex.test(initialInvestment.val())){
+      formvalid = false;
+      errorbox.append("<div>Algselt investeeritud summa ei ole loetav, palun paranda.</div>");
+    }
+
+    var monthlyInvestment = $('#monthly-investment');
+    if (monthlyInvestment.val().length==0) {
+        formvalid = false;
+        errorbox.append("<div>Sisesta palun igakuiselt investeeritud summa.</div>");
+    }
+    else if(!currencyRegex.test(monthlyInvestment.val())){
+      formvalid = false;
+      errorbox.append("<div>Igakuiselt investeeritud summa ei ole loetav, palun paranda.</div>");
+    }
+
+    var lengthYear = $('#length-year');
+    if (lengthYear.val().length==0) {
+        formvalid = false;
+        errorbox.append("<div>Sisesta palun investeeringu kestvus.</div>");
+    }
+    else if(!currencyRegex.test(lengthYear.val())){
+      formvalid = false;
+      errorbox.append("<div>Investeeringu pikkus ei ole loetav, palun paranda.</div>");
+    }
+
+    var interestAnnual = $('#interest-annual');
+    if (interestAnnual.val().length==0) {
+        formvalid = false;
+        errorbox.append("<div>Sisesta palun aastane intressitootlus.</div>");
+    }
+    else if(!currencyRegex.test(interestAnnual.val())){
+      formvalid = false;
+      errorbox.append("<div>Intressitootlus ei ole loetav, palun paranda.</div>");
+    }
 
 
-    $.post("calculations_test.php", form.serialize())
-    .done(function(data){
-      var parsedData = $.parseJSON(data);
-      console.log(parsedData.totalInvestments);
-      drawChart(parsedData);
-      drawTable(parsedData);
-    });
+    if (formvalid) {
+      $.post("calculations_test.php", form.serialize())
+      .done(function(data){
+        var parsedData = $.parseJSON(data);
+        console.log(parsedData.totalInvestments);
+        drawChart(parsedData);
+        drawTable(parsedData);
+      });
+    }
   });
   function drawChart(parsedData){
     $('#container').highcharts({

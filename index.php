@@ -16,18 +16,19 @@ require_once("db.php");
         <form action="calculations_test.php" method="post" id="calculations-form">
 
           <label>Praegu investeeritud summa</label>
-          <input type="text" placeholder="Portfelli väärtus" name="initialInvestment">
+          <input id="initial-investment" type="text" placeholder="Portfelli väärtus" name="initialInvestment">
 
           <label>Igakuiselt lisatav rahasumma</label>
-          <input type="text" placeholder="Igakuiselt lisatav rahasumma" name="monthlyInvestment">
+          <input id="monthly-investment" type="text" placeholder="Igakuiselt lisatav rahasumma" name="monthlyInvestment">
 
           <label>Mitmeks aastaks soovid raha investeerida?<label>
-          <input type="text" placeholder="Investeeringu pikkus aastates" name="lengthYear">
+          <input id="length-year" type="text" placeholder="Investeeringu pikkus aastates" name="lengthYear">
 
           <label>Aastane keskmine tootlus protsentides</label>
-          <input type="text" placeholder="Tootlus %" name="interestAnnual">
+          <input id="interest-annual" type="text" placeholder="Tootlus %" name="interestAnnual">
 
           <button type="submit">Arvuta!</button>
+          <div id="errors">Error!</div>
         </form>
         <div class="panel">
               <div>Ajalooline tootlus:</div>

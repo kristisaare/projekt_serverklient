@@ -55,3 +55,7 @@ tr {
   background-color: #f2ebeb;
   font-size: 12px;
 }
+#errors {
+  color: red;
+  font-size: 11px;
+}
