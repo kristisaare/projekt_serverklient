@@ -21,14 +21,14 @@ require_once("db.php");
           <label>Igakuiselt lisatav rahasumma</label>
           <input id="monthly-investment" type="text" placeholder="Igakuiselt lisatav rahasumma" name="monthlyInvestment">
 
-          <label>Mitmeks aastaks soovid raha investeerida?<label>
+          <label>Mitmeks aastaks soovid raha investeerida?</label>
           <input id="length-year" type="text" placeholder="Investeeringu pikkus aastates" name="lengthYear">
 
           <label>Aastane keskmine tootlus protsentides</label>
           <input id="interest-annual" type="text" placeholder="Tootlus %" name="interestAnnual">
 
           <button type="submit">Arvuta!</button>
-          <div id="errors">Error!</div>
+          <div id="errors"></div>
         </form>
         <div class="panel">
               <div>Ajalooline tootlus:</div>
