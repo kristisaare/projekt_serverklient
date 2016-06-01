@@ -19,6 +19,8 @@ $(document).ready(function(){
     else if(!currencyRegex.test(initialInvestment.val())){
       formvalid = false;
       errorbox.append("<div>Algselt investeeritud summa ei ole loetav, palun paranda.</div>");
+    }else if(initialInvestment.val() > 2147483647) {
+      errorbox.append("<div>Algselt investeeritud summa on liiga suur, palun parandada.</div>");
     }
 
     var monthlyInvestment = $('#monthly-investment');
@@ -29,6 +31,8 @@ $(document).ready(function(){
     else if(!currencyRegex.test(monthlyInvestment.val())){
       formvalid = false;
       errorbox.append("<div>Igakuiselt investeeritud summa ei ole loetav, palun paranda.</div>");
+    }else if(monthlyInvestment.val() > 2147483647) {
+      errorbox.append("<div>Igakuiselt investeeritud summa on liiga suur, palun parandada.</div>");
     }
 
     var lengthYear = $('#length-year');
@@ -39,6 +43,8 @@ $(document).ready(function(){
     else if(!currencyRegex.test(lengthYear.val())){
       formvalid = false;
       errorbox.append("<div>Investeeringu pikkus ei ole loetav, palun paranda.</div>");
+    }else if(lengthYear.val() > 100) {
+      errorbox.append("<div>Investeeringu pikkus on liiga suur (max 100 aastat), palun parandada.</div>");
     }
 
     var interestAnnual = $('#interest-annual');
@@ -50,6 +56,11 @@ $(document).ready(function(){
       formvalid = false;
       errorbox.append("<div>Intressitootlus ei ole loetav, palun paranda.</div>");
     }
+    else if(interestAnnual.val() > 100) {
+      errorbox.append("<div>Intressitootlus on liiga suur (max 100%), palun parandada.</div>");
+    }
+
+
 
 
     if (formvalid) {
